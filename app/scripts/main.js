@@ -21,7 +21,7 @@ $("#regUser").on("click", function(){
   } else {
     console.log("Successfully created user account with uid:", userData.uid);
     var newUser = {
-      email: dbRef.getAuth().password.email
+      email: $("#email").val()
     };
     this.saveUser(userData.uid,newUser)
   }
@@ -63,7 +63,7 @@ var loadCurrentUser = function(){
   if (authData) {
     var url = rootUrl + "users/" + authData.uid;
     var ref = new Firebase(url);
-    var lessons = 'https://shining-fire-7520.firebaseio.com/users/a60a019a-3b07-4ea6-b52d-ee0ad15eac54/lessons/';
+    var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/';
     var lessonsRef = new Firebase(lessons);
 
     ref.once("value", function(user){
@@ -87,7 +87,7 @@ var loadCurrentUser = function(){
          console.log(test[i].$id);
 
          $(li).bind('click', function() {
-     alert(this.id);
+     setChoosen(this.id);
    });
 
        }
@@ -95,6 +95,21 @@ var loadCurrentUser = function(){
     });
 
   }
+}
+
+function setChoosen(id){
+  var authData = dbRef.getAuth();
+  var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + id;
+  var lessonsRef = new Firebase(lessons);
+  lessonsRef.once("value", function(lesson){
+    var test = lesson.val();
+  console.log(test.lesson.date);
+      $("#choosenTitle").text(test.lesson.date);
+
+  });
+
+
+console.log(id);
 }
 
 

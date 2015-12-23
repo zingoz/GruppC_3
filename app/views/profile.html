@@ -45,7 +45,7 @@
 
       <h3 id="welcome"></h3>
 <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
       <div class="form-group">
         <label for="email">Föreläsning:</label>
         <input type="email" class="form-control" id="lesson">
@@ -55,17 +55,29 @@
         <input type="text" class="form-control" id="date">
       </div>
       <button  id="createLesson" onClick="createLesson()" class="btn btn-default">Skapa</button>
+      <hr>
+      <div class="form-group">
+        <label for="email">Alla föreläsningar:</label>
+        <ul id="allLessons"></ul>
+      </div>
+
     </div>
 
-
-
-    <div class="col-md-6">
+    <div class="col-md-8">
     <div class="form-group">
-      <label for="email">Alla föreläsningar:</label>
-      <ul id="allLessons"></ul>
+      <label>Vald föreläsning:</label>
+      <h3 id="choosenTitle"></h3>
+
     </div>
+
+    <hr>
+
 
   </div>
+
+
+
+
 </div>
 
       <div class="footer">
