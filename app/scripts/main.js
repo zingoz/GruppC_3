@@ -79,7 +79,7 @@ var loadCurrentUser = function(){
       var ul = document.getElementById('allLessons') ;
 
        for (var i = 0; i < test.length; i++) {
-         var l = test[i].lesson.date;
+         var l = test[i].lesson.name;
          var li = $("<li></li>").text(l);
          $(li).attr({
             id: test[i].$id
@@ -104,7 +104,7 @@ function setChoosen(id){
   lessonsRef.once("value", function(lesson){
     var test = lesson.val();
   console.log(test.lesson.date);
-      $("#choosenTitle").text(test.lesson.date);
+      $("#choosenTitle").text(test.lesson.name);
 
   });
 
@@ -168,6 +168,7 @@ var createLesson = function(){
      date    : $("#date").val(),
    }
  })
+ loadCurrentUser();
   }
 
 
