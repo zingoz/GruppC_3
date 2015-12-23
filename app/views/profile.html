@@ -16,7 +16,7 @@
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="../styles/main.css">
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
@@ -44,7 +44,7 @@
       <div class="row marketing">
 
       <h3 id="welcome"></h3>
-
+<div class="row">
       <div class="col-md-6">
       <div class="form-group">
         <label for="email">Föreläsning:</label>
@@ -52,15 +52,21 @@
       </div>
       <div class="form-group">
         <label for="date">Datum:</label>
-        <input type="password" class="form-control" id="date">
+        <input type="text" class="form-control" id="date">
       </div>
-    </div>
       <button  id="createLesson" onClick="createLesson()" class="btn btn-default">Skapa</button>
+    </div>
 
 
-      <form name = "myform">
-       <textarea name="msg" id="msg"></textarea>
-      </form>
+
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="email">Alla föreläsningar:</label>
+      <ul id="allLessons"></ul>
+    </div>
+
+  </div>
+</div>
 
       <div class="footer">
         <p>♥ from the Yeoman team</p>

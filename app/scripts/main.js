@@ -1,8 +1,8 @@
 
 
   // CREATE A REFERENCE TO FIREBASE
-  var rootUrl = "https://shining-fire-XXXX.firebaseio.com/"
-  var dbRef = new Firebase('https://shining-fire-XXXX.firebaseio.com/');
+  var rootUrl = "https://shining-fire-7520.firebaseio.com/"
+  var dbRef = new Firebase('https://shining-fire-7520.firebaseio.com/');
 
   // REGISTER DOM ELEMENTS
   var emailField = $('#email');
@@ -63,7 +63,7 @@ var loadCurrentUser = function(){
   if (authData) {
     var url = rootUrl + "users/" + authData.uid;
     var ref = new Firebase(url);
-    var lessons = 'https://shining-fire-XXXX.firebaseio.com/users/a60a019a-3b07-4ea6-b52d-ee0ad15eac54/lessons/';
+    var lessons = 'https://shining-fire-7520.firebaseio.com/users/a60a019a-3b07-4ea6-b52d-ee0ad15eac54/lessons/';
     var lessonsRef = new Firebase(lessons);
 
     ref.once("value", function(user){
@@ -72,9 +72,25 @@ var loadCurrentUser = function(){
 
     });
 
+
     lessonsRef.once("value", function(user){
       var test = getSynchronizedArray(lessonsRef);
         console.log(test);
+      var ul = document.getElementById('allLessons') ;
+
+       for (var i = 0; i < test.length; i++) {
+         var l = test[i].lesson.date;
+         var li = $("<li></li>").text(l);
+         $(li).attr({
+            id: test[i].$id
+        }).appendTo(ul);
+         console.log(test[i].$id);
+
+         $(li).bind('click', function() {
+     alert(this.id);
+   });
+
+       }
 
     });
 
@@ -127,7 +143,7 @@ function positionAfter(list, prevChild) {
 var createLesson = function(){
   var authData = dbRef.getAuth();
 
-  var ref = new Firebase('https://shining-fire-XXXX.firebaseio.com/' + 'users/'+ authData.uid);
+  var ref = new Firebase('https://shining-fire-7520.firebaseio.com/' + 'users/'+ authData.uid);
 
 
  var lessonRef =  ref.child("lessons");
