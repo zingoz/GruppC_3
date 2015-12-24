@@ -104,12 +104,18 @@ function setChoosen(id){
   lessonsRef.once("value", function(lesson){
     var test = lesson.val();
   console.log(test.lesson.date);
-      $("#choosenTitle").text(test.lesson.name);
+      $("#choosenTitle").text('Vald föreläsning: ' + test.lesson.name);
+      $("#choosenId").text(id);
 
   });
 
 
-console.log(id);
+this.getNote(id);
+}
+
+function getNote(argument) {
+  // body...
+  alert(argument);
 }
 
 
@@ -122,12 +128,12 @@ function getSynchronizedArray(firebaseRef) {
 function syncChanges(list, ref) {
   ref.on('child_added', function _add(snap, prevChild) {
     var data = snap.val();
-    data.$id = snap.key(); // assumes data is always an object
+    data.$id = snap.key();
     var pos = positionAfter(list, prevChild);
     list.splice(pos, 0, data);
   });
 }
-// similar to indexOf, but uses id to find element
+
 function positionFor(list, key) {
   for(var i = 0, len = list.length; i < len; i++) {
     if( list[i].$id === key ) {
@@ -136,6 +142,7 @@ function positionFor(list, key) {
   }
   return -1;
 }
+//FRÅN FB-API
 // using the Firebase API's prevChild behavior, we
 // place each element in the list after it's prev
 // sibling or, if prevChild is null, at the beginning
@@ -176,3 +183,22 @@ var createLesson = function(){
 var saveLesson = function(id, lessonData){
   dbRef.child("users").child(id).set(userData);
 };
+
+
+
+var saveNote = function(){
+var id = $("#choosenId").text();
+  alert(id)
+  var authData = dbRef.getAuth();
+
+  var ref = new Firebase('https://shining-fire-7520.firebaseio.com/' + 'users/'+ authData.uid + '/lessons/' + id);
+
+
+ var noteRef =  ref.child("notes");
+ noteRef.push({
+   note: $("#note").val(),
+
+
+
+ })
+}

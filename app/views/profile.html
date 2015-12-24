@@ -47,7 +47,7 @@
 
 <div class="row">
       <div class="col-md-4">
-        <h3 id="welcome"></h3>
+        <h4 id="welcome"></h4>
       <div class="form-group">
         <label>Ny Föreläsning:</label>
         <input type="text" class="form-control" id="lesson">
@@ -58,7 +58,7 @@
 
       </div>
       <button  id="createLesson" onClick="createLesson()" class="btn btn-default">Skapa</button>
-      <hr>
+
       <div class="form-group">
         <label for="email">Alla föreläsningar:</label>
         <ul id="allLessons"></ul>
@@ -68,9 +68,30 @@
 
     <div class="col-md-8">
     <div class="form-group">
-      <label>Vald föreläsning:</label>
-      <h3 id="choosenTitle"></h3>
 
+      <h4 id="choosenTitle"></h4>
+      <h4 id="choosenId"></h4>
+      <div class = "form-group">
+      <label for = "name">Anteckningar</label>
+      <textarea id="note" class = "form-control" rows = "3"></textarea>
+      <button class="saveBtn" onclick="saveNote()">Spara notering</button>
+</hr>
+<div class="row">
+      <div class="col-md-6 repeat rtBtn">
+        Upprepa
+      </div>
+      <div class="col-md-6 more rtBtn">
+        Förklarar mer ingående
+      </div>
+      <div class="col-md-6 thanks rtBtn">
+Tack
+      </div>
+      <div class="col-md-6 dance rtBtn">
+Dance baby
+      </div>
+
+   </div>
+</div>
     </div>
 
     <hr>

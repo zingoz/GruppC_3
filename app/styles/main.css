@@ -87,3 +87,22 @@ body {
     border-bottom: 0;
   }
 }
+
+.repeat{
+  background-color: blue;
+}
+.more{
+  background-color: green;
+}
+.thanks{
+  background-color: red;
+}
+.dance{
+  background-color: orange;
+}
+.rtBtn{
+  padding: 8px;
+}
+.saveBtn{
+  margin-top: 10px;
+}
