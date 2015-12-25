@@ -106,3 +106,12 @@ body {
 .saveBtn{
   margin-top: 10px;
 }
+.showBtn{
+  padding: 20px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+.highlighted{
+  background-color: green;
+}

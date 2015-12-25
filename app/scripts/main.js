@@ -10,22 +10,21 @@
 
   //REGISTER NEW USER
 $("#regUser").on("click", function(){
-
   dbRef.createUser({
   email    : $("#email").val(),
   password    : $("#pwd").val(),
 }, function(error, userData) {
   if (error) {
       $("#error").text(error);
-    console.log("Error creating user:", error);
+      console.log("Error creating user:", error);
   } else {
-    console.log("Successfully created user account with uid:", userData.uid);
-    var newUser = {
-      email: $("#email").val()
-    };
+      console.log("Successfully created user account with uid:", userData.uid);
+      var newUser = {
+        email: $("#email").val()
+      };
     this.saveUser(userData.uid,newUser)
-  }
-})
+   }
+ })
 });
 
 //SAVE/CREATE USER RECORD
@@ -35,28 +34,21 @@ var saveUser = function(id, userData){
 
 //LOGIN USER
 $("#loginUser").on("click", function(){
-
   dbRef.authWithPassword({
   email    : $("#email").val(),
   password    : $("#pwd").val(),
 }, function(error, authData) {
-  if (error) {
-      $("#error").text(error);
-    console.log("Login Failed!", error);
-
-
-  } else {
-    console.log("Login Success!:", authData);
+    if (error) {
+        $("#error").text(error);
+        console.log("Login Failed!", error);
+    } else {
+      console.log("Login Success!:", authData);
       window.location.href = './views/profile.html';
-  }
-})
+    }
+  })
 });
 
-
-
-
-
-//profile
+//PROFILE
 var loadCurrentUser = function(){
   var authData = dbRef.getAuth();
 
@@ -76,46 +68,50 @@ var loadCurrentUser = function(){
     lessonsRef.once("value", function(user){
       var test = getSynchronizedArray(lessonsRef);
         console.log(test);
-      var ul = document.getElementById('allLessons') ;
+        var ul = document.getElementById('allLessons') ;
+             for (var i = 0; i < test.length; i++) {
 
-       for (var i = 0; i < test.length; i++) {
-         var l = test[i].lesson.name;
-         var li = $("<li></li>").text(l);
-         $(li).attr({
-            id: test[i].$id
-        }).appendTo(ul);
-         console.log(test[i].$id);
+               var l = test[i].lesson.name;
+               var li = $("<li></li>").text(l);
+               $(li).attr({
+                  id: test[i].$id
+              }).appendTo(ul);
+               console.log(test[i].$id);
 
-         $(li).bind('click', function() {
-     setChoosen(this.id);
-   });
-
+               $(li).bind('click', function() {
+           setChoosen(this.id);
+         });
        }
-
     });
-
   }
 }
 
+//CHOOSE LESSON
 function setChoosen(id){
   var authData = dbRef.getAuth();
   var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + id;
   var lessonsRef = new Firebase(lessons);
   lessonsRef.once("value", function(lesson){
     var test = lesson.val();
-  console.log(test.lesson.date);
+      console.log(test.lesson.date);
       $("#choosenTitle").text('Vald föreläsning: ' + test.lesson.name);
       $("#choosenId").text(id);
-
   });
-
-
 this.getNote(id);
 }
 
 function getNote(argument) {
   // body...
-  alert(argument);
+  // alert(argument);
+  var authData = dbRef.getAuth();
+  var notes = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + argument;
+  var notesRef = new Firebase(notes);
+  notesRef.once("value", function(notes){
+    var test = notes.val();
+      console.log(test.note);
+
+  });
+
 }
 
 
@@ -188,7 +184,7 @@ var saveLesson = function(id, lessonData){
 
 var saveNote = function(){
 var id = $("#choosenId").text();
-  alert(id)
+  // alert(id)
   var authData = dbRef.getAuth();
 
   var ref = new Firebase('https://shining-fire-7520.firebaseio.com/' + 'users/'+ authData.uid + '/lessons/' + id);
@@ -196,9 +192,28 @@ var id = $("#choosenId").text();
 
  var noteRef =  ref.child("notes");
  noteRef.push({
-   note: $("#note").val(),
-
-
-
+   note: {
+  content:  $("#note").val(),
+   }
  })
+}
+
+
+//REALTIME-EVENTS
+$('.rtBtn').click(function(){
+    var $this = $(this);
+    highLight($this.attr('name'))
+});
+
+var highLight = function(attr){
+  $('#highLightParent').children().each(function () {
+    var choosen = ($(this).attr('id'));
+    if (choosen === attr) {
+        $('#'+ choosen).addClass('highlighted');
+        window.setTimeout(function() {
+              $('#'+ choosen).removeClass('highlighted');
+        }, 5 * 1000);
+    }
+});
+
 }

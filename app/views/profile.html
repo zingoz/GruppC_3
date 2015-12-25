@@ -77,16 +77,16 @@
       <button class="saveBtn" onclick="saveNote()">Spara notering</button>
 </hr>
 <div class="row">
-      <div class="col-md-6 repeat rtBtn">
+      <div class="col-md-6 repeat rtBtn" name="repeat">
         Upprepa
       </div>
-      <div class="col-md-6 more rtBtn">
+      <div class="col-md-6 more rtBtn" name="more">
         Förklarar mer ingående
       </div>
-      <div class="col-md-6 thanks rtBtn">
+      <div class="col-md-6 thanks rtBtn" name="thanks">
 Tack
       </div>
-      <div class="col-md-6 dance rtBtn">
+      <div class="col-md-6 dance rtBtn" name="dance">
 Dance baby
       </div>
 
@@ -103,6 +103,24 @@ Dance baby
 
 
 </div>
+<div class="row">
+</hr>
+  <div class="col-md-12">Realtid</div>
+  <div id="highLightParent">
+  <div id="repeat" class="col-md-6 showRepeat showBtn">
+    Upprepa
+  </div>
+  <div id="more" class="col-md-6 showMore showBtn">
+    Förklarar mer ingående
+  </div>
+  <div id="thanks" class="col-md-6 showThanks showBtn">
+Tack
+  </div>
+  <div id="dance" class="col-md-6 showDance showBtn">
+Dance baby
+  </div>
+  </div>
+</div>
 
       <div class="footer">
         <p>♥ from the Yeoman team</p>
@@ -110,7 +128,7 @@ Dance baby
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
+    <!-- <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
@@ -120,7 +138,7 @@ Dance baby
 
 
 
-    </script>
+    </script> -->
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
