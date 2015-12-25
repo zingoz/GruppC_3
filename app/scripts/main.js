@@ -200,9 +200,15 @@ var id = $("#choosenId").text();
 
 
 //REALTIME-EVENTS
+//PASS VALUE TO FB
 $('.rtBtn').click(function(){
     var $this = $(this);
-    highLight($this.attr('name'))
+    var d = $this.attr('name');
+    dbRef.child('status').set({style: d}, function(error) {
+        if (error !== null) {
+            alert('Unable to push comments to Firebase!');
+        }
+    });
 });
 
 var highLight = function(attr){
@@ -212,8 +218,15 @@ var highLight = function(attr){
         $('#'+ choosen).addClass('highlighted');
         window.setTimeout(function() {
               $('#'+ choosen).removeClass('highlighted');
-        }, 5 * 1000);
+        }, 3 * 1000);
     }
 });
 
 }
+
+var statusRef =  dbRef.child("status");
+statusRef.on('child_changed', function(snapshot) {
+
+    var style = snapshot.val();
+    highLight(style);
+});
