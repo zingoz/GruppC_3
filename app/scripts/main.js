@@ -247,7 +247,11 @@ $("#submit-btn").bind("click", function() {
            if (commentValue.length < 1) {
                alert('Kommentar måste vara längre');
            } else {
-               chatRef.push({comment: commentValue}, function(error) {
+              var authData = dbRef.getAuth();
+               chatRef.push({comment: {
+                 user: authData.password.email,
+                 content: commentValue
+               }}, function(error) {
                    if (error !== null) {
                        alert('Error');
                    }
@@ -264,8 +268,8 @@ $("#submit-btn").bind("click", function() {
            var commentsContainer = $('#comments-container');
 
            $('<div/>', {class: 'comment-container'})
-               .html('<span class="label label-default">Comment '
-                  + '</span>' + comment).appendTo(commentsContainer);
+               .html('<span class="label label-default">'
+                 + comment.user  + '</span>' + comment.content).appendTo(commentsContainer);
 
                 commentsContainer.scrollTop(commentsContainer.prop('scrollHeight'));
        });
