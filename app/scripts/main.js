@@ -211,6 +211,14 @@ $('.rtBtn').click(function(){
     });
 });
 
+//GET CHANGE IN STYLE FROM FB
+var statusRef =  dbRef.child("status");
+statusRef.on('child_changed', function(snapshot) {
+
+    var style = snapshot.val();
+    highLight(style);
+});
+
 var highLight = function(attr){
   $('#highLightParent').children().each(function () {
     var choosen = ($(this).attr('id'));
@@ -224,9 +232,43 @@ var highLight = function(attr){
 
 }
 
-var statusRef =  dbRef.child("status");
-statusRef.on('child_changed', function(snapshot) {
 
-    var style = snapshot.val();
-    highLight(style);
-});
+
+//CHAT ---START
+var chatRef =  dbRef.child("chat");
+$("#submit-btn").bind("click", function() {
+           var comment = $("#comments");
+           var commentValue = $.trim(comment.val());
+           console.log(commentValue.length);
+           if (commentValue.length < 1) {
+               alert('Kommentar måste vara längre');
+           } else {
+               chatRef.push({comment: commentValue}, function(error) {
+                   if (error !== null) {
+                       alert('Error');
+                   }
+               });
+               comment.val("");
+           }
+           return false;
+       });
+
+       //TODO: GET USERNAME
+       chatRef.on('child_added', function(snapshot) {
+
+           var comment = snapshot.val().comment;
+           var commentsContainer = $('#comments-container');
+
+           $('<div/>', {class: 'comment-container'})
+               .html('<span class="label label-default">Comment '
+                  + '</span>' + comment).appendTo(commentsContainer);
+
+                commentsContainer.scrollTop(commentsContainer.prop('scrollHeight'));
+       });
+
+
+       //TODO: CLEAR CHAT
+       $("#reset-btn").bind("click", function() {
+              chatRef.remove();
+              });
+//CHAT ---END
