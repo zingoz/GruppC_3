@@ -104,14 +104,18 @@ function getNote(argument) {
   // body...
   // alert(argument);
   var authData = dbRef.getAuth();
-  var notes = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + argument;
+  var notes = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + argument ;
   var notesRef = new Firebase(notes);
   notesRef.once("value", function(notes){
-    var test = notes.val();
-      console.log(test.note);
-
+      var test = notes.val();
+      var note = test.notes;
+        if (note) {
+        $("#note").text(note.note.content);
+        console.log(note.note.content);
+    } else {
+        $("#note").text('');
+    }
   });
-
 }
 
 
@@ -191,7 +195,7 @@ var id = $("#choosenId").text();
 
 
  var noteRef =  ref.child("notes");
- noteRef.push({
+ noteRef.set({
    note: {
   content:  $("#note").val(),
    }
