@@ -1,7 +1,7 @@
 
 
   // CREATE A REFERENCE TO FIREBASE
-  var rootUrl = "https://shining-fire-7520.firebaseio.com/"
+  var rootUrl = 'https://shining-fire-7520.firebaseio.com/';
   var dbRef = new Firebase('https://shining-fire-7520.firebaseio.com/');
 
   // REGISTER DOM ELEMENTS
@@ -43,7 +43,7 @@ $("#loginUser").on("click", function(){
         console.log("Login Failed!", error);
     } else {
       console.log("Login Success!:", authData);
-      window.location.href = './views/profile.html';
+      window.location.href = 'profile.html';
     }
   })
 });
