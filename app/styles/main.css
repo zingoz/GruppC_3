@@ -9,6 +9,7 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  background-color:#ff6c16;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -17,11 +18,12 @@ body {
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+  color:black;
 }
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid ##ff6c16;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -57,16 +59,20 @@ body {
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .marketing p + h4 {
   margin-top: 28px;
+  color#ff6319;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
+    background-color:#BCBCBC;
   }
 
   /* Remove the padding we set earlier */
@@ -75,6 +81,7 @@ body {
   .footer {
     padding-left: 0;
     padding-right: 0;
+    background-color:##ff6c16;
   }
 
   /* Space out the masthead */
@@ -89,19 +96,20 @@ body {
 }
 
 .repeat{
-  background-color: blue;
+  background-image:url("http://i.imgur.com/XZIvLIi.png?1");
 }
 .more{
-  background-color: green;
+  background-image:url("http://i.imgur.com/4G4wsGG.png");
 }
 .thanks{
-  background-color: red;
+  background-image:url("http://i.imgur.com/FW9VqLW.png?2");
 }
 .dance{
-  background-color: orange;
+  background-image:url("http://i.imgur.com/k0w1hqt.png?2");
 }
 .rtBtn{
   padding: 8px;
+   background-color:#FDC209;
 }
 .saveBtn{
   margin-top: 10px;
@@ -119,6 +127,10 @@ body {
 
 .container {
             max-width: 700px;
+            margin-left:auto;
+            margin-right:auto;
+            float:center;
+            background-color:#ff6c16;
         }
 
         #comments-container {
