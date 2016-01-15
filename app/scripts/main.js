@@ -280,3 +280,32 @@ $("#submit-btn").bind("click", function() {
               chatRef.remove();
               });
 //CHAT ---END
+
+var userOnline = function(){
+    var authData = dbRef.getAuth();
+    var list = document.getElementById("usersOnline");
+    var listItem = document.createElement("li");
+    listItem.innerHTML = authData.password.email;
+    listItem.style.color = "green";
+    list.appendChild(listItem);
+
+    var amOnline = new Firebase(rootUrl + "presence/" + authData);
+    console.log(amOnline);
+    var userRef = amOnline.push();
+
+     // Add ourselves to presence list when online.
+
+    var presenceRef = new Firebase(rootUrl + "./info/connected");
+    presenceRef.on("value", function(snap) {
+      if (snap.val()) {
+        userRef.set(true);
+        // Remove ourselves when we disconnect.
+        userRef.onDisconnect().remove();
+      }
+    });
+
+    // Number of online users is the number of objects in the presence list.
+    listRef.on("value", function(snap) {
+      console.log("# of online users = " + snap.numChildren());
+    });
+  };

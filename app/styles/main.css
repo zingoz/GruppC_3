@@ -67,7 +67,6 @@ body {
   margin-top: 28px;
   background-color: #ff6319;
 }
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -81,7 +80,7 @@ body {
   .footer {
     padding-left: 0;
     padding-right: 0;
-    background-color:##ff6c16;
+    background-color:#ff6c16;
   }
 
   /* Space out the masthead */
