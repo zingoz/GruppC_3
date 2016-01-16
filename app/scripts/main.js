@@ -289,13 +289,13 @@ var userOnline = function(){
     listItem.style.color = "green";
     list.appendChild(listItem);
 
-    var amOnline = new Firebase(rootUrl + "presence/" + authData);
+    var amOnline = new Firebase(rootUrl + 'presence' + authData);
     console.log(amOnline);
     var userRef = amOnline.push();
 
      // Add ourselves to presence list when online.
 
-    var presenceRef = new Firebase(rootUrl + "./info/connected");
+    var presenceRef = new Firebase(rootUrl + './info/connected');
     presenceRef.on("value", function(snap) {
       if (snap.val()) {
         userRef.set(true);
