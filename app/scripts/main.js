@@ -295,7 +295,7 @@ var userOnline = function(){
 
      // Add ourselves to presence list when online.
 
-    var presenceRef = new Firebase(rootUrl + './info/connected');
+    var presenceRef = new Firebase(rootUrl + 'info/connected');
     presenceRef.on("value", function(snap) {
       if (snap.val()) {
         userRef.set(true);
