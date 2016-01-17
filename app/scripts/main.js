@@ -292,7 +292,7 @@ var userOnline = function(){
 
     var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/" + 'presence' + authData);
     console.log(amOnline);
-    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/" + 'info/connected');
+    var userRef = dbRef.child("info/connected").child(id).set(userData);
 
     // Add ourselves to presence list when online.
 
