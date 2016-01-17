@@ -290,11 +290,22 @@ var userOnline = function(){
     listItem.style.color = "green";
     list.appendChild(listItem);
 
-    var amOnline = new Firebase(rootUrl + 'presence' + authData);
+    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/" + 'presence' + authData);
     console.log(amOnline);
-    var userRef = amOnline.push();
+    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/" + 'info/connected');
 
-     // Add ourselves to presence list when online.
+    // Add ourselves to presence list when online.
+
+    amOnline.on('value', function(snapshot) {
+      if (snapshot.val()) {
+        var sessionRef = userRef.push();
+        sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
+        sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
+  }
+});
+
+
+     /*// Add ourselves to presence list when online.
 
     var presenceRef = new Firebase(rootUrl + 'info/connected');
     presenceRef.on("value", function(snap) {
@@ -308,5 +319,5 @@ var userOnline = function(){
     // Number of online users is the number of objects in the presence list.
     listRef.on("value", function(snap) {
       console.log("# of online users = " + snap.numChildren());
-    });
+    });*/
   };
