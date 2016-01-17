@@ -306,7 +306,7 @@ var userOnline = function(){
     });
 
     // Number of online users is the number of objects in the presence list.
-    presenceRef.on("value", function(snap) {
+    listRef.on("value", function(snap) {
       console.log("# of online users = " + snap.numChildren());
     });
   };
