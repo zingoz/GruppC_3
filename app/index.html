@@ -1,111 +1,49 @@
-<!doctype html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>webapp</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-  <script src="firebase.js"></script>
-
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Hem</a></li>
-          <li><a href="./views/login.html">SignIn</a></li>
-          <li><a href="#">KontaKt</a></li>
-        </ul>
-        <h3 class="text-muted" style="text-align:center">LerniApp</h3>
-      </div>
-
-   
-<div class="container" style="margin-left:auto" style="margin-right:auto">
-
-<img src="http://i.imgur.com/FMSrDyZ.jpg" style="float:left;"/</br>
-<h1 style="text-align:center">Välkommen till LerniApp!  </h1></div>
-</br>
-      <div class="row marketing">
-
-  <div class="form-group">
-    <label for="email"style="margin:20px 28px 20px 0px ;">E-post:</label>
-    <input type="email" class="form-control" id="email">
-  </div></br>
-  <div class="form-group">
-    <label for="pwd" style="margin-right:10px;">Lösenord:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  </br>
-  <div class="checkbox">
-    <label><input type="checkbox"> Kom i håg mig!</label>
-  </div>
-  <button  id="regUser"  class="btn btn-default">Register</button>
-  <button  id="loginUser" class="btn btn-default">Login</button>
-  <span class="help-block" id="error"></span>
-      </div>
-
-
+<!doctype html> <html class=no-js> <head> <meta charset=utf-8> 
+<meta name=description> <meta name=viewport content="width=device-width, initial-scale=1">
+ <title>LerniApp</title> <link rel=apple-touch-icon href=apple-touch-icon.png>  
+ <link rel=stylesheet href=styles/vendor.css> <link rel=stylesheet href=Appgruppc.css> 
+ <script src=scripts/vendor/modernizr.js></script> <script src=firebase.js></script>
+  </head> 
+  <body> <!--[if lt IE 10]>
+ <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+ <![endif]--> 
+ <div class=container> 
+ <div class=header> <ul class="nav nav-pills pull-right">
+  <li class=active><a href=#>Home</a></li> <li><a href=./views/login.html>SignIn</a></li> 
+  <li><a href=#>Contact</a></li> </ul> <h3 class=text-muted>LerniApp</h3> </div> 
+  <div class="row marketing"> <div class=row> <div class=col-md-4> <h4 id=welcome></h4>
+   <div class=form-group> <label>Ny Föreläsning:</label> <input type=text class=form-control id=lesson> </div> 
+   <div class=form-group> <label for=date>Datum:</label> <input type=text class=form-control id=date> </div> 
+   <button id=createLesson onclick=createLesson() class="btn btn-default">Skapa</button> 
+   <div class=form-group> <label for=email>Alla föreläsningar:</label> <ul id=allLessons></ul> </div>
+    </div> <div class=col-md-8> <div class=form-group> <h4 id=choosenTitle></h4> <h4 id=choosenId></h4>
+     <div class=form-group> <label for=name>Anteckningar</label> <textarea id=note class=form-control rows=3></textarea>
+      <button class=saveBtn onclick=saveNote()>Spara notering</button> <div class=row> 
       
+      <div id=highLightParent> <div id=repeat class="col-md-6 showRepeat showBtn"><div class="col-md-6 repeat rtBtn" name=repeat></div></div> 
+      <div id=thanks class="col-md-6 showThanks showBtn"> <div class="col-md-6 thanks rtBtn" name=thanks>  </div> </div> 
+      <div id=dance class="col-md-6 showDance showBtn"> <div class="col-md-6 dance rtBtn" name=dance> </div></div> 
+      <div id=more class="col-md-6 showMore showBtn">  <div class="col-md-6 more rtBtn" name=more> </div></div> 
 
-      <div class="footer">
-       <p>Kontakt: GruppC_3, Lernia Högskoleutbildning Javascript FrontEnd, FRO15</p>
-      </div>
-    </div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <!-- <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script> -->
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/plugins.js -->
-    <script src="/bower_components/bootstrap/js/affix.js"></script>
-    <script src="/bower_components/bootstrap/js/alert.js"></script>
-    <script src="/bower_components/bootstrap/js/dropdown.js"></script>
-    <script src="/bower_components/bootstrap/js/tooltip.js"></script>
-    <script src="/bower_components/bootstrap/js/modal.js"></script>
-    <script src="/bower_components/bootstrap/js/transition.js"></script>
-    <script src="/bower_components/bootstrap/js/button.js"></script>
-    <script src="/bower_components/bootstrap/js/popover.js"></script>
-    <script src="/bower_components/bootstrap/js/carousel.js"></script>
-    <script src="/bower_components/bootstrap/js/scrollspy.js"></script>
-    <script src="/bower_components/bootstrap/js/collapse.js"></script>
-    <script src="/bower_components/bootstrap/js/tab.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-  </body>
-</html>
+       <div class=row> <div class=col-md-12>Realtid</div>
+        
+        </div> </div> <div class=container> <div class="panel panel-default"> <div class=panel-body> <div id=comments-container></div> 
+        </div> <div class=panel-footer> <form role=form> <div class=form-group> <label for=comments>Kommentar:</label> 
+        <input class=form-control id=comments name=comments> </div> 
+        <button type=submit id=submit-btn name=submit-btn class="btn btn-primary">Sänd</button>
+         <button type=reset id=reset-btn class="btn btn-default">Rensa</button> </form> </div> </div> 
+         </div> <ul id=usersOnline></ul> <div class=footer> <p>Kontakt: GruppC_3, Lernia Högskoleutbildning Javascript FrontEnd, FRO15</p> </div> </div>   
+         <script src=scripts/vendor.js></script> <script src=scripts/plugins.js></script> <script src=scripts/main.js></script> <script>
+    $(document).ready(function(){
+  loadCurrentUser();
+});
+    $(document).ready(function(){
+      userOnline();
+    });
+    </script> <script>
+ $(function() {
+   $( "#date" ).datepicker();
+ });
+ </script> </div></body> </html> 
+ 
