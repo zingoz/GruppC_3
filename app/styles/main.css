@@ -82,6 +82,7 @@ body {
     padding-left: 0;
     padding-right: 0;
     background-color:##ff6c16;
+   
   }
 
   /* Space out the masthead */
@@ -97,27 +98,49 @@ body {
 
 .repeat{
   background-image:url("http://i.imgur.com/XZIvLIi.png?1");
-}
+  background-repeat:no-repeat;
+  background-position:center;
+  }
 .more{
   background-image:url("http://i.imgur.com/4G4wsGG.png");
+  background-repeat:no-repeat;
+   background-position:center;
+	
+
 }
 .thanks{
   background-image:url("http://i.imgur.com/FW9VqLW.png?2");
+  background-repeat:no-repeat;
+   background-position:center;
+ 
 }
 .dance{
   background-image:url("http://i.imgur.com/k0w1hqt.png?2");
-}
+  background-repeat:no-repeat;
+ background-position:center;
+ }
 .rtBtn{
-  padding: 8px;
-   background-color:#FDC209;
+  
+   background-color:white;
+   display:inline-block;
+   border-radius: 7px;
+   height:50px;
+   width:50px;
+   
 }
 .saveBtn{
   margin-top: 10px;
+    border-radius: 7px;
+
 }
 .showBtn{
-  padding: 20px;
-  border-radius: 50px;
-  margin-bottom: 10px;
+  padding:20px;
+  border-radius: 7px;
+  background-color:white;
+  display:inline-block;
+  height:70px;
+  width:70px;
+  margin:20px;
 }
 
 .highlighted{
