@@ -45,20 +45,27 @@
       </div> <!-- end div class=header -->
         
       <div class="row marketing"> 
-            <div class=row> 
-                <div class=col-md-4> 
+            <div class="row"> 
+
+
+                <div class="col-md-4"> 
                     <h4 id=welcome></h4>
                     <div class=form-group> <label>Ny Föreläsning:</label> <input type=text class=form-control id=lesson> </div> 
                     <div class=form-group> <label for=date>Datum:</label> <input type=text class=form-control id=date> </div> 
                     <button id=createLesson onclick=createLesson() class="btn btn-default">Skapa</button> 
                     <div class=form-group> <label>Alla föreläsningar:</label> <ul id=allLessons></ul> </div>
                 </div>
-                <div class=col-md-8> <div class=form-group> <h4 id=choosenTitle></h4> <h4 id=choosenId></h4></div>
+                
+                
+                <div class="col-md-8"> <div class=form-group> <h4 id=choosenTitle></h4> <h4 id=choosenId></h4></div>
                      <div class=form-group> <label>Anteckningar</label> <textarea id=note class=form-control rows=3></textarea></div>
                      <button class=saveBtn onclick=saveNote()>Spara notering</button>
                 </div>
+
+
             </div>
-            <div class=row> 
+
+            <div class="row clearfix"> 
                  <div id=highLightParent> <div id=repeat class="col-md-6 showRepeat showBtn"><div class="col-md-6 repeat rtBtn"></div></div> 
                  <div id=thanks class="col-md-6 showThanks showBtn"> <div class="col-md-6 thanks rtBtn">  </div> </div> 
                  <div id=dance class="col-md-6 showDance showBtn"> <div class="col-md-6 dance rtBtn"> </div></div> 
