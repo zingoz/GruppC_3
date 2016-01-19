@@ -282,7 +282,10 @@ $("#submit-btn").bind("click", function() {
               });
 //CHAT ---END
 
-var userOnline = function(){
+
+//USERS ONLINE
+
+window.onload = function(){
     var authData = dbRef.getAuth();
     var list = document.getElementById("usersOnline");
     var listItem = document.createElement("li");
@@ -305,21 +308,6 @@ var userOnline = function(){
         sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
   }
 });
+}
 
 
-     /*// Add ourselves to presence list when online.
-
-    var presenceRef = new Firebase(rootUrl + 'info/connected');
-    presenceRef.on("value", function(snap) {
-      if (snap.val()) {
-        userRef.set(true);
-        // Remove ourselves when we disconnect.
-        userRef.onDisconnect().remove();
-      }
-    });
-
-    // Number of online users is the number of objects in the presence list.
-    listRef.on("value", function(snap) {
-      console.log("# of online users = " + snap.numChildren());
-    });*/
-  };
