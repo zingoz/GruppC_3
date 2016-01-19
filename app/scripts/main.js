@@ -290,9 +290,11 @@ var userOnline = function(){
     listItem.style.color = "green";
     list.appendChild(listItem);
 
-    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/" + 'presence' + authData);
+    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/presence/" + authData.uid);
     console.log(amOnline);
-    var userRef = dbRef.child("info/connected").child(id).set(userData);
+    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/.info/connected");
+
+    //dbRef.child(".info/connected").child(id).set(userData);
 
     // Add ourselves to presence list when online.
 
