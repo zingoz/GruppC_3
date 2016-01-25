@@ -337,31 +337,3 @@ $("#submit-btn").bind("click", function() {
 //CHAT ---END
 
 
-//USERS ONLINE
-
-window.onload = function(){
-    var authData = dbRef.getAuth();
-    var list = document.getElementById("usersOnline");
-    var listItem = document.createElement("li");
-    listItem.innerHTML = authData.password.email;
-    listItem.style.color = "green";
-    list.appendChild(listItem);
-
-    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/presence/" + authData.uid);
-    console.log(amOnline);
-    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/.info/connected");
-
-    //dbRef.child(".info/connected").child(id).set(userData);
-
-    // Add ourselves to presence list when online.
-
-    amOnline.on('value', function(snapshot) {
-      if (snapshot.val()) {
-        var sessionRef = userRef.push();
-        sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
-        sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
-  }
-});
-}
-
-
