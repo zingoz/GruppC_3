@@ -96,6 +96,13 @@ body {
   }
 }
 
+/*    */
+#allLessons {
+  max-height:138px;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
 .repeat{
   background-image:url("http://i.imgur.com/XZIvLIi.png?1");
   background-repeat:no-repeat;
