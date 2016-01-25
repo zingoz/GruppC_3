@@ -364,7 +364,7 @@ window.onload = function(){
     var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/.info/connected");
 
     //dbRef.child(".info/connected").child(id).set(userData);
-
+    loadCurrentUser();
     // Add ourselves to presence list when online.
 
     amOnline.on('value', function(snapshot) {
