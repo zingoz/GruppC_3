@@ -135,7 +135,7 @@ var loadCurrentUser = function(){
       var test = getSynchronizedArray(lessonsRef);
         console.log(test);
         var ul = document.getElementById('allLessons') ;
-        document.getElementById("allLessons").innerHTML = "";
+        ul.innerHTML = "";
              for (var i = 0; i < test.length; i++) {
 
                var l = test[i].lesson.name;
