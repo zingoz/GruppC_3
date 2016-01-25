@@ -89,19 +89,30 @@ var saveUser = function(id, userData){
 
 //LOGIN USER
 $("#loginUser").on("click", function(){
+  LoginFunction();
+});
+
+$(".form-control").keypress(function(ButtonClicked){
+    if(ButtonClicked.keyCode == 13){
+        LoginFunction();
+    }
+});
+
+function LoginFunction() {
   dbRef.authWithPassword({
   email    : $("#email").val(),
   password    : $("#pwd").val(),
 }, function(error, authData) {
     if (error) {
-        $("#error").text(error);
-        console.log("Login Failed!", error);
-    } else {
+      $("#error").text(error);
+      console.log("Login Failed!", error);
+    }
+    else {
       console.log("Login Success!:", authData);
       window.location.href = 'profile.html';
     }
   })
-});
+}
 
 //PROFILE
 var loadCurrentUser = function(){
@@ -124,6 +135,7 @@ var loadCurrentUser = function(){
       var test = getSynchronizedArray(lessonsRef);
         console.log(test);
         var ul = document.getElementById('allLessons') ;
+        document.getElementById("allLessons").innerHTML = "";
              for (var i = 0; i < test.length; i++) {
 
                var l = test[i].lesson.name;
@@ -363,5 +375,3 @@ window.onload = function(){
   }
 });
 }
-
-
