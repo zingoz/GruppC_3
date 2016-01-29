@@ -349,9 +349,3 @@ $("#submit-btn").bind("click", function() {
 //CHAT ---END
 
 
-<<<<<<< HEAD
-=======
-//USERS ONLINE
-
-
->>>>>>> robhogfeldt-fron15/master
