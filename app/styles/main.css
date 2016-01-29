@@ -200,6 +200,19 @@ body {
   left: 0.5%;
 
 }
+  .lessonDate{
+ float: right;
+  font-size: 8px;
+  font-weight: 800;
+}
+#lesson-list{
+  max-height: 200px;
+  overflow: auto;
+}
+.choosenLessonStyle{
+  background-color: #EAEAEA;
+}
+
 
 @media (max-width: 1297px){
   #presenceDiv {
@@ -208,4 +221,6 @@ body {
     left: initial;
     
   }
+  
+
 }
