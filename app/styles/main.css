@@ -198,6 +198,7 @@ body {
   position: absolute;
   top: 30%;
   left: 0.5%;
+  width: 300px;
 
 }
   .lessonDate{
@@ -214,13 +215,27 @@ body {
 }
 
 
+#presenceDiv > div {
+  max-width:100%;
+}
+
 @media (max-width: 1297px){
+  #presenceDiv {
+      width: 200px;
+    
+  }
+}
+
+@media (max-width: 1100px){
+  #presenceDiv {
+    width: 150px;
+  }
+}
+
+@media (max-width: 995px){
   #presenceDiv {
     position: initial;
     top: initial;
     left: initial;
-    
+    width: 300px;
   }
-  
-
-}
