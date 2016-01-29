@@ -25,7 +25,6 @@
 
 
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-  <script> userOnline()</script>
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -47,9 +46,64 @@
 
       <div class="row marketing">
             <div class="row">
+  <div class="card-body no-padding">
+                                    <div role="tabpanel">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab">Ny Lektion</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="loadCurrentUser()">Visa alla</a></li>
+
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="new">
+                                              <div class="card">
+                                                  <div class="card-body">
+                                                      <form>
+                                                          <div class="form-group">
+                                                              <label for="title">Titel</label>
+                                                              <input type="title" class="form-control" id="lessonTitle" placeholder="Namn på föreläsning">
+                                                          </div>
+                                                          <div class="form-group">
+                                                              <label for="date">Datum</label>
+                                                              <input type="date" class="form-control" id="lessonDate" placeholder="Datum för föreläsning">
+                                                          </div>
+                                                          <button type="submit" class="btn btn-default" onclick="createLesson()">Submit</button>
+                                                      </form>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="profile">
+                                              <div class="card-body col-xs-4">
+                                                <div class="form-group">
+                                                    <label for="lessons">Lektioner </label>
+                                                    <ul id="lesson-list" class="list-group">
+                                                     <!-- LESSONS FROM FIREBASE -->
+                                                   </ul>
+                                                </div>
+
+                                                  <!-- <div id="comments-container"></div> -->
+                                              </div>
+
+                                              <div class="card-body col-xs-8">
+                                                <form>
+                                                  <div class="form-group">
+                                                      <label for="notes" id="choosenTitle">Anteckningar för </label>
+                                                    <textarea class="form-control" rows="6" id="choosenNote"></textarea>
+
+                                                    <button type="submit" class="btn btn-default" onclick="createNote()">Submit</button>
+                                                  </div>
+                                               </form>
+                                              </div>
+
+                                            </div>
 
 
-                <div class="col-md-4">
+                                        </div>
+                                    </div>
+                                </div>
+
+                <!--<div class="col-md-4">
                     <h4 id=welcome></h4>
                     <div class=form-group> <label>Ny Föreläsning:</label> <input type=text class=form-control id=lesson> </div>
                     <div class=form-group> <label for=date>Datum:</label> <input type=text class=form-control id=date> </div>
@@ -61,7 +115,7 @@
                 <div class="col-md-8"> <div class=form-group> <h4 id=choosenTitle></h4> <h4 id=choosenId></h4></div>
                      <div class=form-group> <label>Anteckningar</label> <textarea id=note class=form-control rows=3></textarea></div>
                      <button class=saveBtn onclick=saveNote()>Spara notering</button>
-                </div>
+                </div>-->
 
 
             </div>

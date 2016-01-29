@@ -115,57 +115,55 @@ function LoginFunction() {
 }
 
 //PROFILE
+//PROFILE
 var loadCurrentUser = function(){
   var authData = dbRef.getAuth();
 
   if (authData) {
-    var url = rootUrl + "users/" + authData.uid;
+    var url = rootUrl + 'users/' + authData.uid;
     var ref = new Firebase(url);
-    var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/';
+    var lessons = 'https://shining-fire-7520.firebaseio.com/users/' + authData.uid + '/lessons/';
     var lessonsRef = new Firebase(lessons);
 
-    ref.once("value", function(user){
+    ref.once('value', function(user){
       var test = user.val();
-        $("#welcome").text('welcome ' + test.email);
+      console.log(test.email);
+        $('#welcome').text('welcome ' + test.email);
 
     });
 
 
-    lessonsRef.once("value", function(user){
-      var test = getSynchronizedArray(lessonsRef);
-        console.log(test);
-        var ul = document.getElementById('allLessons') ;
-        ul.innerHTML = "";
-             for (var i = 0; i < test.length; i++) {
-
-               var l = test[i].lesson.name;
-               var li = $("<li></li>").text(l);
-               $(li).attr({
-                  id: test[i].$id
-              }).appendTo(ul);
-               console.log(test[i].$id);
-
-               $(li).bind('click', function() {
-           setChoosen(this.id);
-         });
-       }
+    $('#lesson-list').empty();
+    lessonsRef.on('child_added', function(lesson){
+      var namelesson = lesson.val();
+      var title = $('<li>').attr('class', 'list-group-item').append(
+        $('<p>').attr({class: 'lesson', id: lesson.key()}).text(namelesson.lesson.name).append(
+        )
+      ).append(
+        $('<span>').attr({class: 'lessonDate'}).text(namelesson.lesson.date)
+      );
+        $('#lesson-list').append(title);
     });
   }
-}
-
-//CHOOSE LESSON
-function setChoosen(id){
-  var authData = dbRef.getAuth();
-  var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + id;
-  var lessonsRef = new Firebase(lessons);
-  lessonsRef.once("value", function(lesson){
-    var test = lesson.val();
-      console.log(test.lesson.date);
-      $("#choosenTitle").text('Vald föreläsning: ' + test.lesson.name);
-      $("#choosenId").text(id);
-  });
-this.getNote(id);
-}
+};
+$(document).on('click', '.lesson', function() {
+$('.choosenLessonStyle').removeClass('choosenLessonStyle');
+$(this.parentElement).addClass('choosenLessonStyle');
+setChoosen(this.id);
+});
+// //CHOOSE LESSON
+// function setChoosen(id){
+//   var authData = dbRef.getAuth();
+//   var lessons = 'https://shining-fire-7520.firebaseio.com/users/'+authData.uid+'/lessons/' + id;
+//   var lessonsRef = new Firebase(lessons);
+//   lessonsRef.once("value", function(lesson){
+//     var test = lesson.val();
+//       console.log(test.lesson.date);
+//       $("#choosenTitle").text('Vald föreläsning: ' + test.lesson.name);
+//       $("#choosenId").text(id);
+//   });
+// this.getNote(id);
+// }
 
 function getNote(argument) {
   // body...
@@ -349,29 +347,62 @@ $("#submit-btn").bind("click", function() {
 //CHAT ---END
 
 
-//USERS ONLINE
+var createLesson = function(){
+  var authData = dbRef.getAuth();
+  var ref = new Firebase('https://shining-fire-7520.firebaseio.com/' + 'users/' + authData.uid);
 
-window.onload = function(){
-    var authData = dbRef.getAuth();
-    var list = document.getElementById("usersOnline");
-    var listItem = document.createElement("li");
-    listItem.innerHTML = authData.password.email;
-    listItem.style.color = "green";
-    list.appendChild(listItem);
 
-    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/presence/" + authData.uid);
-    console.log(amOnline);
-    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/.info/connected");
+ var lessonRef = ref.child('lessons');
+ lessonRef.push({
+   lesson: {
+     name: $('#lessonTitle').val(),
+     date: $('#lessonDate').val()
+   }
+ });
+ loadCurrentUser();
+  };
 
-    //dbRef.child(".info/connected").child(id).set(userData);
-    loadCurrentUser();
-    // Add ourselves to presence list when online.
 
-    amOnline.on('value', function(snapshot) {
-      if (snapshot.val()) {
-        var sessionRef = userRef.push();
-        sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
-        sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
-  }
-});
+
+var createNote = function(){
+var id = $('.choosenLessonStyle').find('p').attr('id');
+console.log(id);
+  // alert(id)
+  var authData = dbRef.getAuth();
+
+  var ref = new Firebase('https://shining-fire-7520.firebaseio.com/' + 'users/' + authData.uid + '/lessons/' + id);
+
+
+ var noteRef = ref.child('notes');
+ noteRef.set({
+  note: $('#choosenNote').val()
+  });
+};
+
+
+
+
+
+
+
+//CHOOSE LESSON
+function setChoosen(id){
+
+  var authData = dbRef.getAuth();
+  var lessons = 'https://shining-fire-7520.firebaseio.com/users/' + authData.uid + '/lessons/' + id;
+  var lessonsRef = new Firebase(lessons);
+
+  lessonsRef.once('value', function(lesson){
+
+console.log(lesson.val());
+    $('#choosenTitle').empty();
+    $('#choosenNote').empty();
+
+    var test = lesson.val();
+      $('#choosenTitle').text('Vald föreläsning: ' + test.lesson.name);
+      if (test.notes) {
+      $('#choosenNote').text(test.notes.note);
+      }
+  });
+// this.getNote(id);
 }

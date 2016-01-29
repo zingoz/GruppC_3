@@ -186,3 +186,57 @@ body {
         .comment-container:last-of-type {
             border-bottom: none;
         }
+
+/* PRESENCE DIV */
+#presenceDiv {
+  border-top: 10px solid black;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 4px;
+  color: lime;
+  padding: 10px;
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  left: 0.5%;
+  width: 300px;
+
+}
+  .lessonDate{
+ float: right;
+  font-size: 8px;
+  font-weight: 800;
+}
+#lesson-list{
+  max-height: 200px;
+  overflow: auto;
+}
+.choosenLessonStyle{
+  background-color: #EAEAEA;
+}
+
+
+#presenceDiv > div {
+  max-width:100%;
+}
+
+@media (max-width: 1297px){
+  #presenceDiv {
+      width: 200px;
+    
+  }
+}
+
+@media (max-width: 1100px){
+  #presenceDiv {
+    width: 150px;
+  }
+}
+
+@media (max-width: 995px){
+  #presenceDiv {
+    position: initial;
+    top: initial;
+    left: initial;
+    width: 300px;
+  }
+}
