@@ -89,19 +89,30 @@ var saveUser = function(id, userData){
 
 //LOGIN USER
 $("#loginUser").on("click", function(){
+  LoginFunction();
+});
+
+$(".form-control").keypress(function(ButtonClicked){
+    if(ButtonClicked.keyCode == 13){
+        LoginFunction();
+    }
+});
+
+function LoginFunction() {
   dbRef.authWithPassword({
   email    : $("#email").val(),
   password    : $("#pwd").val(),
 }, function(error, authData) {
     if (error) {
-        $("#error").text(error);
-        console.log("Login Failed!", error);
-    } else {
+      $("#error").text(error);
+      console.log("Login Failed!", error);
+    }
+    else {
       console.log("Login Success!:", authData);
       window.location.href = 'profile.html';
     }
   })
-});
+}
 
 //PROFILE
 var loadCurrentUser = function(){
@@ -124,6 +135,7 @@ var loadCurrentUser = function(){
       var test = getSynchronizedArray(lessonsRef);
         console.log(test);
         var ul = document.getElementById('allLessons') ;
+        ul.innerHTML = "";
              for (var i = 0; i < test.length; i++) {
 
                var l = test[i].lesson.name;
@@ -335,33 +347,5 @@ $("#submit-btn").bind("click", function() {
               chatRef.remove();
               });
 //CHAT ---END
-
-
-//USERS ONLINE
-
-window.onload = function(){
-    var authData = dbRef.getAuth();
-    var list = document.getElementById("usersOnline");
-    var listItem = document.createElement("li");
-    listItem.innerHTML = authData.password.email;
-    listItem.style.color = "green";
-    list.appendChild(listItem);
-
-    var amOnline = new Firebase("https://shining-fire-7520.firebaseio.com/presence/" + authData.uid);
-    console.log(amOnline);
-    var userRef = new Firebase("https://shining-fire-7520.firebaseio.com/.info/connected");
-
-    //dbRef.child(".info/connected").child(id).set(userData);
-
-    // Add ourselves to presence list when online.
-
-    amOnline.on('value', function(snapshot) {
-      if (snapshot.val()) {
-        var sessionRef = userRef.push();
-        sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
-        sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
-  }
-});
-}
 
 
